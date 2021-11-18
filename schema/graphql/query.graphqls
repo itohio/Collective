@@ -1,0 +1,24 @@
+scalar DateTime
+
+enum AssetType {
+  DELETED
+  PRIVATE
+  MEMBERS_ONLY
+  PUBLIC
+  COMMERCIAL
+}
+
+enum MemberRole {
+  OWNER
+  ADMIN
+  TEAMMATE
+}
+
+
+type Query {
+  organizations(id: ID): [Organization!]!
+  members(orgId: ID, id: ID): [Member!]!   @isAuthenticated
+  users(id: ID): [User!]!                  @isAuthenticated
+  assets(orgId: ID, id: ID): [Asset!]!
+  wallets(id: ID): [Wallet!]!              @isAuthenticated
+}

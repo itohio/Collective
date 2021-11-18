@@ -1,0 +1,43 @@
+type Asset {
+  id: ID!
+  name: String!
+  description: String!
+  type: AssetType!
+  eventCaps: [EventCapability!]!
+  imageUrl: String!
+  disabled: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+type EventCapability {
+  id: ID!
+  code: Int!
+  name: String!
+  description: String!
+}
+
+type Session {
+  id: ID!
+  active: Boolean!
+  user: User!
+  asset: Asset!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+
+input AssetInput {
+  name: String!
+  description: String!
+  type: AssetType!
+  imageUrl: String!
+  disabled: Boolean!
+}
+
+input SessionInput {
+  userId: ID!
+  assetId: ID!
+  active: Boolean!
+  walletId: ID
+}

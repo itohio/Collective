@@ -1,0 +1,27 @@
+type Organization {
+  id: ID!
+  name: String!
+  description: String!
+  type: AssetType!
+  wallet: Wallet
+  assets: [Asset!]!
+  members: [Member!]!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+input OrganizationInput {
+  name: String!
+  description: String!
+  type: AssetType!
+  walletId: ID
+}
+
+type Wallet {
+  id: ID!
+  ethAddress: String!
+}
+
+input WalletInput {
+  ethAddress: String!
+}

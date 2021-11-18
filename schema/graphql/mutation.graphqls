@@ -1,0 +1,24 @@
+type Mutation {
+  createOrganization(input: OrganizationInput!): Organization!                      @hasScope(scopes: ["create:org", "edit:org"]) @isAuthenticated
+  updateOrganization(organizationId: ID!, input: OrganizationInput!): Organization! @hasScope(scopes: ["edit:org"]) @isAuthenticated
+  deleteOrganization(organizationId: ID!): Organization!                            @hasScope(scopes: ["delete:org"]) @isAuthenticated
+
+  createMember(organizationId: ID!, input: MemberInput!): Member! @hasScope(scopes: ["edit:org"]) @isAuthenticated
+  updateMember(memberId: ID!, input: MemberInput!): Member!       @hasScope(scopes: ["edit:org"]) @isAuthenticated
+  deleteMember(organizationId: ID, memberId: ID!): Member!        @hasScope(scopes: ["edit:org"]) @isAuthenticated
+
+  createAsset(organizationId: ID!, input: AssetInput!): Asset!    @hasScope(scopes: ["edit:org"]) @isAuthenticated
+  updateAsset(assetId: ID!, input: AssetInput!): Asset!           @hasScope(scopes: ["edit:org"]) @isAuthenticated
+  deleteAsset(assetId: ID!): Asset!                               @hasScope(scopes: ["edit:org"]) @isAuthenticated
+
+  createUser(input: UserInput!): User!                            @isAuthenticated
+  updateUser(userId: ID!, input: UserInput!): User!               @isAuthenticated
+  deleteUser(userId: ID!): User!                                  @isAuthenticated
+
+  createWallet(organizationId: ID, userId: ID, input: WalletInput!): Wallet! @isAuthenticated
+  updateWallet(walletId: ID!, input: WalletInput!): Wallet!                  @isAuthenticated
+  deleteWallet(walletId: ID!): Wallet!                                       @isAuthenticated
+
+  connect(input: SessionInput!): Session!                         @hasScope(scopes: ["edit:link"]) @isAuthenticated
+  disconnect(sessionId: ID!): Session!                            @hasScope(scopes: ["edit:link"]) @isAuthenticated
+}
